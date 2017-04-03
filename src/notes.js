@@ -60,7 +60,7 @@
             
         }, 33); // ~30fps
         
-        document.write('<br/><br/> Canvas size: ' + ctx.width + ' x ' + ctx.height + ' px');
+        document.write('<br/><br/> Canvas size: ' + canvas.width + ' x ' + canvas.height + ' px');
         document.write('<br/>Notes count: ' + arrNotes.length);
     }
     window.drawNotes = drawNotes;
