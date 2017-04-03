@@ -21,7 +21,7 @@
                 posX = 40;
             };
         }
-        document.getElementById("canvas").addEventListener("mousedown", onMouseDown, false);
+        canvas.addEventListener("mousedown", onMouseDown, false);
 
         function onMouseDown(event) {
             for(let i=0;i<vxyNotes.length;i++) {
