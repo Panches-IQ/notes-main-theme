@@ -7,11 +7,13 @@
             ctx = canvas.getContext('2d'),
             posY = 20,
             posX = 40,
-            img = new Image();
+            img = new Image(),
+            notesOnScreen = 0;
 
         img.src = 'img/note1.png';
         document.getElementById('title').innerHTML = arrNotes['title'];      
         arrNotes = arrNotes['sequence'];  
+        notesOnScreen = arrNotes.length;
 
         for(let i=0;i<arrNotes.length;i++) {
             vxyNotes.push([true,posX,posY+posNotes[arrNotes[i][0]]]);
@@ -26,9 +28,12 @@
         function onMouseDown(event) {
             for(let i=0;i<vxyNotes.length;i++) {
                 if(vxyNotes[i][1]+3<event.offsetX && vxyNotes[i][1]+27>event.offsetX && vxyNotes[i][2]+3<event.offsetY && vxyNotes[i][2]+27>event.offsetY) {
-                    vxyNotes[i][0] = false;                    
+                    if(vxyNotes[i][0]){
+                        vxyNotes[i][0] = false;
+                        notesOnScreen--;
+                        }                                        
                 }
-            }
+            }            
         }
 
         setInterval(function(){            
@@ -57,11 +62,9 @@
                 posY += 60;
             }
             ctx.stroke();
-            
+            document.getElementById("n-count").innerHTML = "Notes on screen: " + notesOnScreen;            
         }, 33); // ~30fps
-        
-        document.write('<br/><br/> Canvas size: ' + canvas.width + ' x ' + canvas.height + ' px');
-        document.write('<br/>Notes count: ' + arrNotes.length);
+        document.getElementById("n-info").innerHTML = '<br/>Canvas size: ' + canvas.width + ' x ' + canvas.height + ' px<br/>' + 'Notes count: ' + arrNotes.length; 
     }
     window.drawNotes = drawNotes;
 })(window);
